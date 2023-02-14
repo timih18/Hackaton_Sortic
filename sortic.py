@@ -1,9 +1,9 @@
-def max_a(a):
-    max_a = a[0]
+def minimum(a):
+    mi_a = a[0]
     for i in a:
-        if i > max_a:
-            max_a = i
-    return max_a
+        if i < mi_a:
+            mi_a = i
+    return mi_a
 
 
 def ra(a):
@@ -21,11 +21,16 @@ while a_input != '!':
     a.append(int(a_input))
     a_input = input()
 while len(a) > 1:
-    while a[0] != max_a(a):
+    while a[0] != minimum(a):
         ra(a)
         print('ra')
     b.append(a[0])
-    print('pa')
+    print('pb')
     a = a[1:]
 b.append(a[0])
 print(b)
+a = []
+for i in b:
+    a.append(i)
+    print('pa')
+print(a)
