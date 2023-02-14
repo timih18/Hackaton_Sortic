@@ -1,20 +1,20 @@
 from colorama import Fore
 
 
-def minimum(a):
-    mi_a = a[0]
-    for i in a:
-        if i < mi_a:
-            mi_a = i
-    return mi_a
+def minimum(sp):
+    mi_sp = sp[0]
+    for i in sp:
+        if i < mi_sp:
+            mi_sp = i
+    return mi_sp
 
 
-def ra(a):
-    b = a[-1]
-    for i in range(len(a)):
-        a[i-1] = a[i]
-    a[-2] = b
-    return a
+def ra(sp):
+    num = sp[-1]
+    for i in range(len(sp)):
+        sp[i-1] = sp[i]
+    sp[-2] = num
+    return sp
 
 
 a = [int(i) for i in input().split()]
@@ -24,11 +24,11 @@ while len(a) > 1:
         ra(a)
         print(Fore.BLUE + 'ra')
     b.append(a[0])
-    print(Fore.BLUE + 'pb')
+    print(Fore.YELLOW + 'pb')
     a = a[1:]
 b.append(a[0])
 a = []
 for i in b:
     a.append(i)
 for i in range(len(b)-1):
-    print(Fore.BLUE + 'pa')
+    print(Fore.CYAN + 'pa')
