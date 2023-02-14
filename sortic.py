@@ -1,3 +1,6 @@
+from colorama import Fore
+
+
 def minimum(a):
     mi_a = a[0]
     for i in a:
@@ -14,22 +17,18 @@ def ra(a):
     return a
 
 
-a = []
+a = [int(i) for i in input().split()]
 b = []
-a_input = input()
-while a_input != '!':
-    a.append(int(a_input))
-    a_input = input()
 while len(a) > 1:
     while a[0] != minimum(a):
         ra(a)
-        print('ra')
+        print(Fore.BLUE + 'ra')
     b.append(a[0])
-    print('pb')
+    print(Fore.BLUE + 'pb')
     a = a[1:]
 b.append(a[0])
 a = []
 for i in b:
     a.append(i)
 for i in range(len(b)-1):
-    print('pa')
+    print(Fore.BLUE + 'pa')
