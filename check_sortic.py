@@ -11,8 +11,6 @@ def pa_pb(sp1, sp2):
     if len(sp2) > 0:
         sp1.append(sp2[0])
         rra_rrb_rrr(sp1)
-        # --------------------------------pop-------------------------------- #
-        sp2 = sp2.pop(0)
     return sp1, sp2
 
 
@@ -38,19 +36,21 @@ instructions = input().split()
 for i in instructions:
     if i == 'sa' or i == 'ss':
         sa_sb_ss(a)
-    elif i == 'sb' or i == 'ss':
+    if i == 'sb' or i == 'ss':
         sa_sb_ss(b)
-    elif i == 'pa':
+    if i == 'pa':
         pa_pb(a, b)
-    elif i == 'pb':
+        b = b[1:]
+    if i == 'pb':
         pa_pb(b, a)
-    elif i == 'ra' or i == 'rr':
+        a = a[1:]
+    if i == 'ra' or i == 'rr':
         ra_rb_rr(a)
-    elif i == 'rb' or i == 'rr':
+    if i == 'rb' or i == 'rr':
         ra_rb_rr(b)
-    elif i == 'rra' or i == 'rrr':
+    if i == 'rra' or i == 'rrr':
         rra_rrb_rrr(a)
-    elif i == 'rrb' or i == 'rrr':
+    if i == 'rrb' or i == 'rrr':
         rra_rrb_rrr(b)
 cnt = 0
 for i in range(len(a)-1):
