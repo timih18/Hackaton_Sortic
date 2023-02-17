@@ -17,18 +17,21 @@ def ra(sp):
     return sp
 
 
-a = [int(i) for i in input().split()]
-b = []
-while len(a) > 1:
-    while a[0] != minimum(a):
-        ra(a)
-        print(Fore.BLUE + 'ra')
+a = input().split()
+if a == []:
+    print('empty list')
+else:
+    b = []
+    while len(a) > 1:
+        while a[0] != minimum(a):
+            ra(a)
+            print(Fore.BLUE + 'ra')
+        b.append(a[0])
+        print(Fore.YELLOW + 'pb')
+        a = a[1:]
     b.append(a[0])
-    print(Fore.YELLOW + 'pb')
-    a = a[1:]
-b.append(a[0])
-a = []
-for i in b:
-    a.append(i)
-for i in range(len(b)-1):
-    print(Fore.CYAN + 'pa')
+    a = []
+    for i in b:
+        a.append(i)
+    for i in range(len(b)-1):
+        print(Fore.CYAN + 'pa')
