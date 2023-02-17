@@ -1,41 +1,38 @@
 from colorama import Fore
 
 
-def minimum(sp):
-    mi_sp = sp[0]
-    for i in sp:
-        if i < mi_sp:
-            mi_sp = i
-    return mi_sp
+def sa_sb_ss(sp):
+    if len(sp) > 1:
+        sp[0], sp[1] = sp[1], sp[0]
+    return sp
 
 
-def ra(sp):
+def pa_pb(sp1, sp2):
+    if len(sp2) > 0:
+        sp1.append(sp2[0])
+        rra_rrb_rrr(sp1)
+    return sp1, sp2
+
+
+def ra_rb_rr(sp):
     num = sp[-1]
     for i in range(len(sp)):
         sp[i-1] = sp[i]
     sp[-2] = num
+    return a
+
+
+def rra_rrb_rrr(sp):
+    num = sp[-1]
+    for i in range(len(sp), 0, -1):
+        sp[i-1] = sp[i-2]
+    sp[0] = num
     return sp
 
 
-a = input().split()
-if a == []:
-    print('empty list')
-else:
-    b = []
-    while len(a) > 1:
-        while a[0] != minimum(a):
-            ra(a)
-            print(Fore.BLUE + 'ra')
-        b.append(a[0])
-        print(Fore.YELLOW + 'pb')
-        a = a[1:]
-    b.append(a[0])
-    a = []
-    for i in b:
-        a.append(i)
-    for i in range(len(b)-1):
-        print(Fore.CYAN + 'pa')
-
+a = [int(i) for i in input().split()]
+b = []
+instructions = input().split()
 for i in instructions:
     if i == 'sa' or i == 'ss':
         sa_sb_ss(a)
