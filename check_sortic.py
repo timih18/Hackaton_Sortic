@@ -1,6 +1,13 @@
 from colorama import Fore
 
 
+def check_sorting(sp):
+    for i in range(len(sp)-1):
+        if sp[i] > sp[i+1]:
+            return False
+    return True
+
+
 def sa_sb_ss(sp):
     if len(sp) > 1:
         sp[0], sp[1] = sp[1], sp[0]
@@ -31,33 +38,35 @@ def rra_rrb_rrr(sp):
 
 
 a = [int(i) for i in input().split()]
-b = []
-instructions = input().split()
-for i in instructions:
-    if i == 'sa' or i == 'ss':
-        sa_sb_ss(a)
-    if i == 'sb' or i == 'ss':
-        sa_sb_ss(b)
-    if i == 'pa':
-        pa_pb(a, b)
-        b = b[1:]
-    if i == 'pb':
-        pa_pb(b, a)
-        a = a[1:]
-    if i == 'ra' or i == 'rr':
-        ra_rb_rr(a)
-    if i == 'rb' or i == 'rr':
-        ra_rb_rr(b)
-    if i == 'rra' or i == 'rrr':
-        rra_rrb_rrr(a)
-    if i == 'rrb' or i == 'rrr':
-        rra_rrb_rrr(b)
-cnt = 0
-for i in range(len(a)-1):
-    if a[i] > a[i+1]:
-        cnt = 1
-        break
-if cnt == 0:
-    print(Fore.GREEN + 'OK')
+instruction = input()
+instructions = []
+while instruction != '!':
+    instructions.append(instruction)
+    instruction = input()
+if not a:
+    print(Fore.LIGHTRED_EX + 'empty list')
 else:
-    print(Fore.RED + 'KO')
+    b = []
+    for i in instructions:
+        if i == 'sa' or i == 'ss':
+            sa_sb_ss(a)
+        if i == 'sb' or i == 'ss':
+            sa_sb_ss(b)
+        if i == 'pa':
+            pa_pb(a, b)
+            b = b[1:]
+        if i == 'pb':
+            pa_pb(b, a)
+            a = a[1:]
+        if (i == 'ra' or i == 'rr') and len(a) > 0:
+            ra_rb_rr(a)
+        if (i == 'rb' or i == 'rr') and len(b) > 0:
+            ra_rb_rr(b)
+        if (i == 'rra' or i == 'rrr') and len(a) > 0:
+            rra_rrb_rrr(a)
+        if (i == 'rrb' or i == 'rrr') and len(b) > 0:
+            rra_rrb_rrr(b)
+    if check_sorting(a) and not b:
+        print(Fore.GREEN + 'OK')
+    else:
+        print(Fore.RED + 'KO')
